@@ -34,7 +34,7 @@ class LoginScreen(object):
         self.fill()
 
     def check_database(self):
-        db = shelve.open('datas.db')
+        db = shelve.open('shelveDB/datas.db')
         try:
             if self.input_name.get() not in db.keys():
                 self.result['text'] = 'Usuário não encontrado!'
@@ -68,7 +68,7 @@ class LoginScreen(object):
         self.button_register['command'] = self.creating_new_user
 
     def creating_new_user(self):
-        db = shelve.open('datas.db')
+        db = shelve.open('shelveDB/datas.db')
         try:
             # Creating new user
             if self.input_name.get() in db.keys():
@@ -98,7 +98,6 @@ class LoginScreen(object):
         datas = []
         for line in remember_login:
             datas.append(line)
-        print(datas)
         remember_login.close()
         if 'mode remember_me = false' not in datas:
             aux = datas[0].split('\n')
